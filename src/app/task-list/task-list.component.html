@@ -1,0 +1,19 @@
+<app-new></app-new>
+
+<div class="row">
+  <label for="filter-select">Filter: </label>
+  <select id="filter-select" name="filter-mode" [(ngModel)]="filterMode" (change)="filter()" >
+    <option value="All">All</option>
+    <option value="Completed">Completed</option>
+    <option value="In Progress">In Progress</option>
+  </select>
+</div>
+
+<button id="restore" (click)="restore()">Restore</button>
+
+<div id="task-list" *ngIf="tasks !== undefined">
+    <app-task *ngFor="let task of filteredTasks" [id]="task.id"></app-task>
+</div>
+<ng-container *ngIf="tasks === undefined">
+  loading...
+</ng-container>

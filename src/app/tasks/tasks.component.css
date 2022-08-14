@@ -1,0 +1,277 @@
+/*
+ * TasksComponent's private CSS styles
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing:border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:visited {
+  color:#000;
+}
+
+:root {
+  --select-border: #777;
+  --select-focus: #b3ddff;
+  --select-arrow: var(--select-border);
+}
+
+.todo-list {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+  max-width: 90vw;
+  margin: 0 auto;
+  background-color:#e6f4ff;
+}
+
+#list-container {
+  width: 70vw;
+  margin: 0 auto;
+}
+
+/*
+ * Task list filter
+ */
+
+#list-filter {
+  width: 100%;
+  padding-top: 1rem;
+  margin-left: 25%;
+  font-size: 1.25em;
+  line-height: 1.1;
+  background-color: transparent;
+}
+
+#list-filter select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  width: 100%;
+  outline: none;
+}
+
+.filter-options {
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff, 33%);
+  cursor: pointer;
+  border: 4px solid var(--select-border);
+  border-radius: 0.25em;
+
+  padding: 0.25rem 0.5rem;  
+  max-width:fit-content;
+}
+
+/*
+ * Task selection actions
+ */
+
+#selection-actions {
+  margin: 1ch auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 35em;
+}
+
+/*
+ * Tasks
+ */
+
+.tasks {
+  list-style-type: none;
+}
+
+.tasks li {
+  max-width: 35em;
+
+  margin: 1rem auto;
+  padding: 0.4rem;
+
+  background-color: #fff;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparent;
+  border-radius: 7px;
+
+  transition:all .1s ease-in-out;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 1ch;
+}
+
+.tasks li:hover {
+  transform: scale(1.1);
+  background-color: #FFFF88;
+  border-color: #000;
+}
+
+.btn {
+  color: #222;
+  background-color: transparent;
+  border: none;
+  padding: 0 0.2rem;
+  transition: all .1s ease-in-out;
+}
+
+.btn:enabled {
+  cursor: pointer;
+}
+
+.btn:hover:enabled {
+  color: gold;
+  transform: scale(1.1);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+}
+
+#task-body {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  gap: 1ch;
+
+}
+
+#move-buttons {
+  flex: 0 0 1ch;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  gap: 1ch;
+}
+
+
+/*
+ * Task Header
+ */
+
+#task-header {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+
+  flex: 1 1 auto;
+  gap: 1ch;
+
+}
+
+#task-header #task-select {
+  flex: 0 0 3ch;
+}
+
+#task-header #title {
+  flex: 1 1 auto;
+}
+
+#task-header h3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-title-wrap {
+  white-space: wrap;
+}
+
+.task-title-no-wrap {
+  white-space: nowrap;
+}
+
+/*
+ * Task Footer
+ */
+
+#task-footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+#footer-detail-button {
+  display: flex;
+  flex-flow: row nonwrap;
+  justify-content: flex-end;
+  align-items: flex-start;
+
+  flex: 0 0 auto;
+}
+
+#footer-detail-button p mat-icon {
+  padding-top: 7px;
+}
+
+#btn-section a {
+  font-size: small;
+}
+
+#btn-section a:hover {
+  font-size: calc(80% * 1.1);
+}
+
+/*
+ * Task description
+ */
+
+#details {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding-left: 2ch;
+  gap: 0.7ch;
+}
+
+#details p {
+  font-size: 90%;
+}
+
+#due-date {
+  width: fit-content;
+  margin: 0;
+}
+
+#due-date p {
+  font-size: 70%;
+  opacity: 70%;
+}
+
+/*
+ * Filler / spacing
+ */
+
+#space-bottom {
+  background-color: transparent;
+  width: 100%;
+  height: 2em;
+}

@@ -1,0 +1,273 @@
+/* TaskComponent's private CSS styles */
+
+/*
+ * GENERIC
+ */
+
+* {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6, p, input {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/*
+ * DISPLAY-INFO
+ */
+
+#display-info {
+  width: 100%;
+  background-color: lightcoral;
+  padding: 1ch 8ch;
+  margin: 2ch 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  gap: 1ch;
+}
+
+#display-info * {
+  width: max-content;
+  background-color: inherit;
+}
+
+#display-info .display-info-form {
+  background-color: #fff;
+  padding: 0.2rem;
+}
+
+#redirect {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1ch;
+}
+
+#redirect input {
+  width: 2ch;
+}
+
+/*
+ * TASK
+ */
+
+#task {
+  max-width: 35rem;
+  width: 70vw;
+
+  background-color: #fff;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 6px;
+  border-color: black;
+
+  padding: 0.8ch 1ch 0.6ch;
+  margin: 0 auto;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  gap: 1ch;
+}
+
+.btn {
+  color: #000;
+  background-color: transparent;
+  border: none;
+  transition: all .1s ease-in-out;
+}
+
+.btn:enabled {
+  cursor: pointer;
+}
+
+.btn:hover:enabled {
+  color: gold;
+  transform: scale(1.1);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+}
+
+/*
+ * ROWS
+ */
+
+.default-row {
+  width: 100%;
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  gap: 1ch;
+}
+
+.detail-title-row {
+  width: 100%;
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 1ch;
+}
+
+/*
+ * DEFAULT-JUSTIFY
+ */
+
+#default-justify-left {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1ch;
+
+  min-width: 0;
+}
+
+#default-justify-left #title {
+  flex: 0 1 auto;
+}
+
+#default-justify-left h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#default-justify-right {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-end;
+  gap: 1ch;
+}
+
+#default-justify-right #move-btn {
+  flex: 0 0 2ch;
+}
+
+/*
+ * DETAIL-BODY
+ */
+
+.detail-body {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  gap: 1ch;
+  padding: 0.5ch 1ch;
+}
+
+/*
+ * DETAIL-JUSTIFY-LEFT
+ */
+
+#detail-justify-left {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1ch;
+  min-width: 0;
+}
+
+#detail-justify-left #title {
+  flex: 1 1 auto;
+}
+
+/*
+ * EDIT
+ */
+
+input {
+  font-size: 120%;
+  font-weight: bold;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+.edit-body {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  gap: 1ch;
+}
+
+#edit-description {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+}
+
+#detail-date > input {
+  font-size: 90%;
+  font-weight: normal;
+}
+
+#edit-description > textarea {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  font-size: 120%;
+  resize: none;
+}
+
+#detail-btn {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+/*
+ * TASK-LOADING 
+ */
+
+#task-loading {
+  max-width: 35rem;
+  width: 70vw;
+
+  background-color: #fff;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+
+  padding: 1ch;
+  margin: 0 auto;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#task-dying {
+  max-width: 35rem;
+  width: 70vw;
+
+  color: #fff;
+  background-color: #000;
+  border-style: solid;
+  border-radius: 7px;
+  border-width: 2px;
+  border-color: black;
+
+  padding: 1ch;
+  margin: 0 auto;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}

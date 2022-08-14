@@ -1,0 +1,220 @@
+<ng-container [ngSwitch]="getMode()">
+
+  <!-- DIV FOR OUTPUT FOR EASIER TESTING -->
+  <div *ngIf="showInfoFlag" id="display-info">
+    <div id="redirect">
+      <input class="display-info-form" #relativeAddress maxlength="1" />
+      <button class="display-info-form" (click)="redirect(relativeAddress.value)">Redirect</button>
+    </div>
+    <select #selectMode class="display-info-form" (change)="setMode(stringToNum(selectMode.value))">
+      <option value="0">DEFAULT</option>
+      <option value="1">DETAIL</option>
+      <option value="2">EDIT</option>
+    </select>
+    <span>CURRENT MODE: {{getMode() | uppercase}}</span>
+  </div>
+
+  <!--
+    DYING : 5
+  -->
+  <div *ngSwitchCase="getMode(5)" id="task-dying" >
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+    <mat-icon>sentiment_very_dissatisfied</mat-icon>
+  </div>
+
+  <!--
+  - LOAD ERROR : 4
+  -->
+  <div *ngSwitchCase="getMode(4)" id="task-loading" >
+    <mat-icon>sync_problem</mat-icon>
+    <h3>ERROR</h3>
+    <mat-icon>sync_problem</mat-icon>
+  </div>
+
+  <!--
+  - LOADING : 3
+  -->
+  <div *ngSwitchCase="getMode(3)" id="task-loading" >
+    <mat-icon>sync</mat-icon>
+    <h3>LOADING</h3>
+    <mat-icon>sync</mat-icon>
+  </div>
+
+  <!--
+    EDIT: 2
+  -->
+  <section *ngSwitchCase="getMode(2)" id="task">
+
+    <!-- TITLE ROW -->
+    <div class="detail-title-row">
+      <div id="detail-justify-left">
+        <!-- Task Title -->
+        <input id="title-form" value="{{getTitle()}}" #title>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="edit-body">
+      <div id="edit-description">
+        <!-- Task Description -->
+        <textarea value="{{getDescription()}}" #description></textarea>
+      </div>
+      <div id="detail-date">
+        <!-- Task DueDate -->
+        <input type="date" #date />
+      </div>
+    </div>
+
+    <!-- FOOT -->
+    <div id="detail-btn">
+      <!-- Cancel edit button -->
+      <!-- setMode to DETAIL mode -->
+      <button class="btn" (click)="setMode(1)">
+        <mat-icon>cancel</mat-icon>
+      </button>
+      <!-- Save edit button -->
+      <button class="btn" (click)="save({'title':title.value, 'description':description.value, 'dueDate':date.value})">
+        <mat-icon>save</mat-icon>
+      </button>
+    </div>
+
+  </section>
+
+
+  <!--
+  - DETAIL: 1
+  -->
+  <section *ngSwitchCase="getMode(1)" id="task">
+
+    <!-- TITLE ROW -->
+    <div class="detail-title-row">
+      <div id="detail-justify-left">
+        <!-- Task Title -->
+        <h3 id="title">{{getTitle()}}</h3>
+      </div>
+
+      <div id="default-justify-right">
+        <!-- Move button 
+        - FUNCTION NOT IMPLEMENTED 
+        -->
+        <button id="move-btn" class="btn" (click)="move()">
+          <mat-icon>dehaze</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- BODY -->
+    <div class="detail-body">
+      <div id="detail-description" *ngIf="getDescription().length > 0">
+        <p>{{getDescription()}}</p>
+      </div>
+      <div id="detail-date" *ngIf="getDueDate().length > 0">
+        <p>due: {{getDueDate()}}</p>
+      </div>
+    </div>
+
+    <!-- FOOT -->
+    <div class="default-row">
+      <div id="default-justify-left">
+        <!-- Task Completed Toggle -->
+        <button id="task-complete-toggle" class="btn" (click)="setIsComplete()">
+          <div *ngIf="isComplete(); else incomplete">
+            <mat-icon>check_box</mat-icon>
+          </div>
+          <ng-template #incomplete>
+            <mat-icon>check_box_outline_blank</mat-icon>
+          </ng-template>
+        </button>
+
+        <!-- Task Edit (changes mode to edit mode)-->
+        <button id="edit-btn" class="btn" (click)="edit()">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <!-- Task Delete (changes mode to default mode)-->
+        <button id="delete-btn" class="btn" (click)="delete()">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+      <div id="default-justify-right">
+        <!-- Show Details (changes mode to details mode) -->
+        <button id="detail-button" class="btn" (click)="detail()">
+          <mat-icon>expand_less</mat-icon>
+        </button>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!--
+  - DEFAULT: 0
+  -->
+  <section *ngSwitchDefault id="task">
+
+    <div class="default-row">
+
+      <!-- TITLE ROW -->
+      <div id="default-justify-left">
+        <!-- Task Title -->
+        <h3 id="title"  >{{getTitle()}}</h3>
+      </div>
+
+      <div id="default-justify-right">
+        <!-- Move button 
+        - FUNCTION NOT IMPLEMENTED 
+        -->
+        <button id="move-btn" class="btn" (click)="move()">
+          <mat-icon>dehaze</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- FOOT -->
+    <div class="default-row">
+      <div id="default-justify-left">
+        <!-- Task Completed Toggle -->
+        <button id="task-complete-toggle" class="btn" (click)="setIsComplete()">
+          <div *ngIf="isComplete(); else incomplete">
+            <mat-icon>check_box</mat-icon>
+          </div>
+          <ng-template #incomplete>
+            <mat-icon>check_box_outline_blank</mat-icon>
+          </ng-template>
+        </button>
+
+        <!-- Task Edit (changes mode to edit mode)-->
+        <button id="edit-btn" class="btn" (click)="edit()">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <!-- Task Delete (changes mode to default mode)-->
+        <button id="delete-btn" class="btn" (click)="delete()">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </div>
+      <div id="default-justify-right">
+        <!-- Show Details (changes mode to details mode) -->
+        <button id="detail-button" class="btn" (click)="detail()" >
+          <mat-icon>chevron_left</mat-icon>
+        </button>
+
+      </div>
+    </div>
+
+  </section>
+
+</ng-container>

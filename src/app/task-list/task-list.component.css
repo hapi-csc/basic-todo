@@ -1,0 +1,34 @@
+#task-list {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2ch;
+}
+
+#task-list > app-task {
+  transition: all .1s ease-in-out;
+}
+
+#task-list > app-task:hover {
+  transform: scale(1.05);
+}
+
+#restore {
+  margin: 4em;
+}
+
+/*
+ * filter
+ */
+
+.column {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  gap: 2ch;
+}
+
+.row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}

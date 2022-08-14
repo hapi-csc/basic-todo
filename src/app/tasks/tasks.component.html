@@ -1,0 +1,115 @@
+<div class="todo-list">
+
+<div id="list-container" >
+
+<div *ngIf="tasks.length; else elseBlock">
+
+  <section id="list-filter">
+    <div class="filter-options" >
+      <select id="filter-options-select" name="filter-mode" [(ngModel)]="filterMode" (change)="filter()" >
+        <option value="All">All</option>
+        <option value="Completed">Completed</option>
+        <option value="In Progress">In Progress</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- SELECT ACTIONS -->
+  <div id="selection-actions">
+
+  <button class="btn" (click)="this.selectAllTasks()">
+    <h3>ALL</h3>
+  </button>
+
+  <button class="btn" (click)="this.fToSelected(markComplete)">
+    <mat-icon>check_box</mat-icon>
+  </button>
+
+  <button class="btn" (click)="fToSelected(delete)">
+    <mat-icon>delete</mat-icon>
+  </button>
+
+  </div>
+
+  <ul class="tasks">
+    <li *ngFor="let task of filteredTasks" >
+
+      <div id="task-body">
+
+      <!-- HEADER -->
+      <div id="task-header">
+
+      <!-- toggle selecting task -->
+      <button id="task-select" class="btn" (click)="setSelectTask(task.id)">
+        <div *ngIf="isSelected(task.id); else notSelected">
+          <mat-icon>radio_button_checked</mat-icon>
+        </div>
+        <ng-template #notSelected>
+          <mat-icon>radio_button_unchecked</mat-icon>
+        </ng-template>
+      </button>
+
+      <!-- title
+        TODO overflow settings based on details toggle-->
+      <h3 id="title" [ngClass]="[titleStyle]" >{{task.title}}</h3>
+
+      </div>
+
+      <!-- DETAILS SECTION -->
+      <div id="details" *ngIf="isShowDetails(task.id)">
+        <p>{{task.description}}</p>
+        <div id="due-date">
+          <p *ngIf="isDueDate(task.id)" >due: {{task.dueDate}}</p>
+        </div>
+      </div>
+
+
+      <!-- FOOTER -->
+      <div id="task-footer">
+
+        <!-- complete - edit - delete -->
+        <div id="task-footer-left">
+        <!-- Task Completed Toggle -->
+        <button id="task-complete-toggle" class="btn" (click)="markComplete(task.id)">
+          <div *ngIf="task.isComplete; else incomplete">
+            <mat-icon>check_box</mat-icon>
+          </div>
+          <ng-template #incomplete>
+            <mat-icon>check_box_outline_blank</mat-icon>
+          </ng-template>
+        </button>
+
+        <button id="edit-btn" class="btn" (click)="edit(task.id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button id="delete-btn" class="btn" (click)="delete(task.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+        </div> <!-- task-footer-left -->
+
+        <!-- details button -->
+        <button id="footer-detail-button" class="btn" (click)="setShowDetails(task.id)" [disabled]="!task.description && !task.dueDate">
+          <div *ngIf="isShowDetails(task.id); else chevronLeft">
+            <p><mat-icon>expand_less</mat-icon>hide</p>
+          </div>
+          <ng-template #chevronLeft>
+            <p><mat-icon>chevron_left</mat-icon>details</p>
+          </ng-template>
+        </button>
+
+      </div> <!-- footer -->
+      </div> <!-- task-body -->
+
+    </li>
+  </ul>
+  <div id="space-bottom"></div>
+</div>
+
+<ng-template #elseBlock id="tasks-empty">
+  <h3>No tasks!</h3>
+</ng-template>
+
+</div> <!-- list-container -->
+
+</div>
